@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoneyHome</string>
+    <string name="btn_start">Начать</string>
+    <string name="main_label_text">Деньги Дома</string>
+</resources>
