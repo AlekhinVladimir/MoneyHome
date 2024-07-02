@@ -1,4 +1,4 @@
-package com.example.moneyhome.presentation.analytics
+package com.example.moneyhome.ui.analytics
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle

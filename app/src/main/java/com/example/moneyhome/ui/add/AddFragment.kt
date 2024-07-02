@@ -1,4 +1,4 @@
-package com.example.moneyhome.presentation.history
+package com.example.moneyhome.ui.add
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.moneyhome.R
 
-class HistoryFragment : Fragment() {
+class AddFragment : Fragment() {
 
     companion object {
-        fun newInstance() = HistoryFragment()
+        fun newInstance() = AddFragment()
     }
 
-    private val viewModel: HistoryViewModel by viewModels()
+    private val viewModel: AddViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,6 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        return inflater.inflate(R.layout.fragment_add, container, false)
     }
 }
