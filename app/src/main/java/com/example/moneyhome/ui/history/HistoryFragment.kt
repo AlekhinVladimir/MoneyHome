@@ -13,7 +13,7 @@ import com.example.moneyhome.databinding.FragmentHistoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class HistoryFragment : Fragment() {
 
     private val viewModel: HistoryViewModel by viewModels()
@@ -31,21 +31,21 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = HistoryAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter
-
-        lifecycleScope.launch {
-            viewModel.expenses.collect { expenses ->
-                adapter.submitList(expenses)
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.incomes.collect { incomes ->
-                adapter.submitList(incomes)
-            }
-        }
+//        val adapter = HistoryAdapter()
+//        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+//        binding.recyclerView.adapter = adapter
+//
+//        lifecycleScope.launch {
+//            viewModel.expenses.collect { expenses ->
+//                adapter.submitList(expenses)
+//            }
+//        }
+//
+//        lifecycleScope.launch {
+//            viewModel.incomes.collect { incomes ->
+//                adapter.submitList(incomes)
+//            }
+//        }
     }
 
     override fun onDestroyView() {

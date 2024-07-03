@@ -1,5 +1,6 @@
 package com.example.moneyhome.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.moneyhome.data.local.AppDatabase
@@ -23,7 +24,8 @@ object AppModule {
             context,
             AppDatabase::class.java,
             "expense_tracker_db"
-        ).build()
+        ).allowMainThreadQueries()// Только для разработки
+            .build()
     }
 
     @Provides
@@ -44,5 +46,9 @@ object AppModule {
     @Provides
     fun provideIncomeRepository(incomeDao: IncomeDao): IncomeRepository {
         return IncomeRepository(incomeDao)
+    }
+    @Provides
+    fun provideContext(application: Application): Context {
+        return application
     }
 }

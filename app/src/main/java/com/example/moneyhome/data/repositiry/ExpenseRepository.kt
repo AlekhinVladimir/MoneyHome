@@ -2,6 +2,7 @@ package com.example.moneyhome.data.repositiry
 
 import com.example.moneyhome.data.local.dao.ExpenseDao
 import com.example.moneyhome.data.local.entity.Expense
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -8,10 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Hello"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="86dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

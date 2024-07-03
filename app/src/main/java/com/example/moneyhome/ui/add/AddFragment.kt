@@ -10,7 +10,7 @@ import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentAddBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class AddFragment : Fragment() {
 
     private val viewModel: AddViewModel by viewModels()
@@ -27,22 +27,22 @@ class AddFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonSave.setOnClickListener {
-            val date = binding.datePicker.date
-            val category = binding.categoryInput.text.toString()
-            val amount = binding.amountInput.text.toString().toDouble()
-            val comment = binding.commentInput.text.toString()
-            val type = if (binding.radioGroup.checkedRadioButtonId == R.id.radio_income) "Income" else "Expense"
-
-            if (type == "Income") {
-                viewModel.insertIncome(date, category, amount, comment)
-            } else {
-                viewModel.insertExpense(date, category, amount, comment)
-            }
-
-            findNavController().navigateUp()
+//        binding.buttonSave.setOnClickListener {
+//            val date = binding.datePicker.date
+//            val category = binding.categoryInput.text.toString()
+//            val amount = binding.amountInput.text.toString().toDouble()
+//            val comment = binding.commentInput.text.toString()
+//            val type = if (binding.radioGroup.checkedRadioButtonId == R.id.radio_income) "Income" else "Expense"
+//
+//            if (type == "Income") {
+//                viewModel.insertIncome(date, category, amount, comment)
+//            } else {
+//                viewModel.insertExpense(date, category, amount, comment)
+//            }
+//
+//            findNavController().navigateUp()
         }
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

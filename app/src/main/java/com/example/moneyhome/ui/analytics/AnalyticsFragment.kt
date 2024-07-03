@@ -10,7 +10,7 @@ import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentAnalyticsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class AnalyticsFragment : Fragment() {
 
     private val viewModel: AnalyticsViewModel by viewModels()

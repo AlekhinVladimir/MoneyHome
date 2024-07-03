@@ -1,14 +1,14 @@
 package com.example.moneyhome.ui
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.example.moneyhome.R
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -17,9 +17,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
-        NavigationUI.setupActionBarWithNavController(this, navController)
+
+        navController = findNavController(R.id.nav_host_fragment_container)
+    }
+
+    private fun findNavController(fragment: Int): NavController { // без этого костыля выдавал ошибку по id
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(fragment) as NavHostFragment
+        return navHostFragment.navController
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
