@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.b.setOnClickListener {
+        binding.buttonMenu.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_menuFragment)
         }
     }

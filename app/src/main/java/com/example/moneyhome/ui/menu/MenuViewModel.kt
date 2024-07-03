@@ -1,10 +1,10 @@
 package com.example.moneyhome.ui.menu
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-@AndroidEntryPoint
-class MenuViewModel : ViewModel() {
-
-
+@HiltViewModel
+class MenuViewModel @Inject constructor() : ViewModel() {
+    // ViewModel code here
 }

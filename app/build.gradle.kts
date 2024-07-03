@@ -36,7 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding=true
-        dataBinding=true
+
     }
 }
 
@@ -55,11 +55,10 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)

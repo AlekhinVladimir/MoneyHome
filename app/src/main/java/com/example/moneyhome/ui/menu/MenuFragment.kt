@@ -28,14 +28,16 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
+
         binding.btnToExpenseScreen.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_addFragment)
+            navController.navigate(R.id.action_menuFragment_to_addFragment)
         }
         binding.btnToHistoryScreen.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_historyFragment)
+            navController.navigate(R.id.action_menuFragment_to_historyFragment)
         }
         binding.btnToAnalyticsScreen.setOnClickListener {
-            findNavController().navigate(R.id.action_menuFragment_to_analyticsFragment)
+            navController.navigate(R.id.action_menuFragment_to_analyticsFragment)
         }
         binding.btnExit.setOnClickListener {
             requireActivity().finish()
