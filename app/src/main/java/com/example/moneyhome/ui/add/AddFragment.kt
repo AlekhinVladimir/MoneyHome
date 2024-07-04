@@ -10,7 +10,7 @@ import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentAddBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class AddFragment : Fragment() {
 
     private val viewModel: AddViewModel by viewModels()

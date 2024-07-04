@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.moneyhome.R
 import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
