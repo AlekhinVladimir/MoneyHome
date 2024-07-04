@@ -12,26 +12,62 @@ import dagger.hilt.android.AndroidEntryPoint
 
 //@AndroidEntryPoint
 class AnalyticsFragment : Fragment() {
-
-    private val viewModel: AnalyticsViewModel by viewModels()
-    private var _binding: FragmentAnalyticsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAnalyticsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // TODO: Implement analytics logic and update UI
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//
+//    private lateinit var barChart: BarChart
+//    private lateinit var startDateEditText: EditText
+//    private lateinit var endDateEditText: EditText
+//    private lateinit var typeSpinner: Spinner
+//    private lateinit var categorySpinner: Spinner
+//    private lateinit var filterButton: Button
+//
+//    private val viewModel: AnalyticsViewModel by viewModels()
+//
+//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//        val view = inflater.inflate(R.layout.fragment_analytics, container, false)
+//
+//        barChart = view.findViewById(R.id.barChart)
+//        startDateEditText = view.findViewById(R.id.editTextStartDate)
+//        endDateEditText = view.findViewById(R.id.editTextEndDate)
+//        typeSpinner = view.findViewById(R.id.spinnerType)
+//        categorySpinner = view.findViewById(R.id.spinnerCategory)
+//        filterButton = view.findViewById(R.id.buttonFilter)
+//
+//        filterButton.setOnClickListener {
+//            applyFilters()
+//        }
+//
+//        viewModel.transactions.observe(viewLifecycleOwner, Observer { transactions ->
+//            updateChart(transactions)
+//        })
+//
+//        viewModel.loadAllTransactions()
+//
+//        return view
+//    }
+//
+//    private fun applyFilters() {
+//        val startDate = startDateEditText.text.toString()
+//        val endDate = endDateEditText.text.toString()
+//        val type = typeSpinner.selectedItem.toString()
+//        val category = categorySpinner.selectedItem.toString()
+//
+//        if (type != "Все") {
+//            viewModel.loadTransactionsByType(type)
+//        } else if (category != "Все") {
+//            viewModel.loadTransactionsByCategory(category)
+//        } else {
+//            viewModel.loadTransactionsByDateRange(startDate, endDate)
+//        }
+//    }
+//
+//    private fun updateChart(transactions: List<Transaction>) {
+//        val entries = transactions.mapIndexed { index, transaction ->
+//            BarEntry(index.toFloat(), transaction.amount.toFloat())
+//        }
+//
+//        val dataSet = BarDataSet(entries, "Transactions")
+//        val barData = BarData(dataSet)
+//        barChart.data = barData
+//        barChart.invalidate() // refresh
+//    }
 }
