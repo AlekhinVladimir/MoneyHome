@@ -11,10 +11,9 @@ import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentMenuBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+
 class MenuFragment : Fragment() {
 
-    private val viewModel: MenuViewModel by viewModels()
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
 
