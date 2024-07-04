@@ -1,15 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:
+    android:background="@color/for_background"
+    android:padding="16dp"
     tools:context=".ui.add.AddFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"
-            tools:layout_editor_absoluteX="98dp"
-            tools:layout_editor_absoluteY="86dp" />
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="381dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="120dp"
+        android:hint="@string/date_hint"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupOperationType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextDate">
+
+        <RadioButton
+            android:id="@+id/radioButtonExpense"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/expense" />
+
+        <RadioButton
+            android:id="@+id/radioButtonIncome"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/income" />
+
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="372dp"
+        android:layout_height="74dp"
+        android:entries="@array/transaction_categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupOperationType" />
+
+    <EditText
+        android:id="@+id/editTextAmount"
+        android:layout_width="375dp"
+        android:layout_height="70dp"
+        android:hint="@string/amount_hint"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCategory" />
+
+    <EditText
+        android:id="@+id/editTextComment"
+        android:layout_width="389dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/comment_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextAmount" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextComment"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="201dp"
+        android:layout_height="37dp"
+        android:text="@string/add_expense"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

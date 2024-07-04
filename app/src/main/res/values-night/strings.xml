@@ -7,4 +7,25 @@
     <string name="analytics">Аналитика</string>
     <string name="exit">Выход</string>
     <string name="menu">Меню</string>
+    <string name="expense">Расход</string>
+    <string name="amount_hint">Сумма</string>
+    <string name="comment_hint">Комментарий</string>
+    <string name="save_button">Сохранить запись</string>
+    <string-array name="transaction_categories">
+        <item>Продукты</item>
+        <item>Кафе</item>
+        <item>Коммунальные услуги</item>
+        <item>Транспорт</item>
+        <item>Одежда</item>
+        <item>Развлечения</item>
+        <item>Здоровье</item>
+        <item>Подарки</item>
+        <item>Учеба</item>
+        <item>Спорт</item>
+        <item>Техника</item>
+        <item>Долги</item>
+        <item>Путешествия</item>
+        <item>Авто</item>
+        <item>Домашние животные</item>
+    </string-array>
 </resources>
