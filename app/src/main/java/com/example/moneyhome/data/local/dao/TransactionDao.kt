@@ -4,22 +4,27 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
+import com.example.moneyhome.data.local.entity.TransactionEntity
+import java.util.Date
 
 @Dao
 interface TransactionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(transaction: Transaction)
+    suspend fun insert(transaction: TransactionEntity)
+
+    @Query("DELETE FROM transactions WHERE id = :id")
+    suspend fun delete(id: Int)
 
     @Query("SELECT * FROM transactions")
-    suspend fun getAllTransactions(): List<Transaction>
+    suspend fun getAllTransactions(): List<TransactionEntity>
 
     @Query("SELECT * FROM transactions WHERE date BETWEEN :startDate AND :endDate")
-    suspend fun getTransactionsByDateRange(startDate: String, endDate: String): List<Transaction>
+    suspend fun getTransactionsByDateRange(startDate: Date, endDate: Date): List<TransactionEntity>
 
     @Query("SELECT * FROM transactions WHERE type = :type")
-    suspend fun getTransactionsByType(type: String): List<Transaction>
+    suspend fun getTransactionsByType(type: String): List<TransactionEntity>
 
     @Query("SELECT * FROM transactions WHERE category = :category")
-    suspend fun getTransactionsByCategory(category: String): List<Transaction>
+    suspend fun getTransactionsByCategory(category: String): List<TransactionEntity>
+    }

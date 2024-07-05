@@ -1,14 +1,27 @@
 package com.example.moneyhome.ui.add
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Transaction
 import com.example.moneyhome.R
+import com.example.moneyhome.data.local.entity.TransactionEntity
 import com.example.moneyhome.databinding.FragmentAddBinding
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
+
 
 @AndroidEntryPoint
 class AddFragment : Fragment() {
@@ -20,32 +33,57 @@ class AddFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.buttonSave.setOnClickListener {
-//            val date = binding.datePicker.date
-//            val category = binding.categoryInput.text.toString()
-//            val amount = binding.amountInput.text.toString().toDouble()
-//            val comment = binding.commentInput.text.toString()
-//            val type = if (binding.radioGroup.checkedRadioButtonId == R.id.radio_income) "Income" else "Expense"
-//
-//            if (type == "Income") {
-//                viewModel.insertIncome(date, category, amount, comment)
-//            } else {
-//                viewModel.insertExpense(date, category, amount, comment)
-//            }
-//
-//            findNavController().navigateUp()
+
+        binding.buttonSave.setOnClickListener {
+            val date = binding.editTextDate.text.toString()
+            val type = if (binding.radioGroupOperationType.checkedRadioButtonId == R.id.radioButtonIncome) "Доход" else "Расход"
+            val category = binding.spinnerCategory.selectedItem.toString()
+            val amount = binding.editTextAmount.text.toString().toDoubleOrNull() ?: 0.0
+            val comment = binding.editTextComment.text.toString()
+
+            if (date.isEmpty() || amount == 0.0 || amount == 0.0 || category.isEmpty()) {
+                Toast.makeText(requireContext(), "Заполните все поля корректно", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            try {
+                val parsedDate = formatter.parse(date)
+                if (parsedDate != null) {
+                    viewModel.saveTransaction(parsedDate, type, category, amount, comment)
+                    lifecycleScope.launch {
+                        saveTransactionsToFile(viewModel.getAllTransactions())
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Неправильный формат даты", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: ParseException) {
+                Toast.makeText(requireContext(), "Неправильный формат даты", Toast.LENGTH_SHORT).show()
+            }
         }
 
+        viewModel.transactionSavedEvent.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), "Транзакция сохранена", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private suspend fun saveTransactionsToFile(transactions: List<TransactionEntity>) {
+        withContext(Dispatchers.IO) {
+            val gson = Gson()
+            val json = gson.toJson(transactions)
+            val file = File(requireContext().filesDir, "transactions.json")
+            file.writeText(json)
+        }
     }
 }

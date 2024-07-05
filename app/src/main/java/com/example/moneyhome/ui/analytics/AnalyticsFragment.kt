@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.room.Transaction
 import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentAnalyticsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class AnalyticsFragment : Fragment() {
-//
+
 //    private lateinit var barChart: BarChart
 //    private lateinit var startDateEditText: EditText
 //    private lateinit var endDateEditText: EditText
@@ -60,7 +61,7 @@ class AnalyticsFragment : Fragment() {
 //        }
 //    }
 //
-//    private fun updateChart(transactions: List<Transaction>) {
+//    private fun updateChart(transactions: List<TransactionEntity>) {
 //        val entries = transactions.mapIndexed { index, transaction ->
 //            BarEntry(index.toFloat(), transaction.amount.toFloat())
 //        }

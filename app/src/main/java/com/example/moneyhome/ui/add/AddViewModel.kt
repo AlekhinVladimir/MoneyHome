@@ -1,32 +1,41 @@
 package com.example.moneyhome.ui.add
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moneyhome.data.local.entity.Expense
-import com.example.moneyhome.data.local.entity.Income
-import com.example.moneyhome.data.repositiry.ExpenseRepository
-import com.example.moneyhome.data.repositiry.IncomeRepository
+import com.example.moneyhome.data.local.entity.TransactionEntity
+import com.example.moneyhome.data.repositiry.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class AddViewModel @Inject constructor(
-    private val expenseRepository: ExpenseRepository,
-    private val incomeRepository: IncomeRepository
+    private val repository: TransactionRepository
 ) : ViewModel() {
 
-    fun insertExpense(date: Long, category: String, amount: Double, comment: String) {
-        val expense = Expense(date =date, category = category, amount = amount, comment = comment)
+    private val _transactionSavedEvent = MutableLiveData<Unit>()
+    val transactionSavedEvent: LiveData<Unit> get() = _transactionSavedEvent
+
+    fun saveTransaction(date: Date, type: String, category: String, amount: Double, comment: String) {
         viewModelScope.launch {
-            expenseRepository.insert(expense)
+            val formatter =  SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            val formattedDate = formatter.parse(date.toString())?: date
+            val transaction = TransactionEntity(
+                date = formattedDate,
+                type = type,
+                category = category,
+                amount = amount,
+                comment = comment)
+            repository.insertTransaction(transaction)
+            _transactionSavedEvent.postValue(Unit)
         }
     }
-
-    fun insertIncome(date: Long, category: String, amount: Double, comment: String) {
-        val income = Income(date = date, category = category, amount = amount, comment = comment)
-        viewModelScope.launch {
-            incomeRepository.insert(income)
-        }
+    suspend fun getAllTransactions(): List<TransactionEntity> {
+        return repository.getAllTransactions()
     }
 }

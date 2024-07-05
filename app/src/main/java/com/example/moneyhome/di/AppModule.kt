@@ -4,10 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.moneyhome.data.local.AppDatabase
-import com.example.moneyhome.data.local.dao.ExpenseDao
-import com.example.moneyhome.data.local.dao.IncomeDao
-import com.example.moneyhome.data.repositiry.ExpenseRepository
-import com.example.moneyhome.data.repositiry.IncomeRepository
+import com.example.moneyhome.data.local.dao.TransactionDao
+import com.example.moneyhome.data.repositiry.TransactionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,24 +27,16 @@ object AppModule {
     }
 
     @Provides
-    fun provideExpenseDao(appDatabase: AppDatabase): ExpenseDao {
-        return appDatabase.expenseDao()
+    fun provideTransactionDao(appDatabase: AppDatabase): TransactionDao {
+        return appDatabase.transactionDao()
     }
 
-    @Provides
-    fun provideIncomeDao(appDatabase: AppDatabase): IncomeDao {
-        return appDatabase.incomeDao()
-    }
 
     @Provides
-    fun provideExpenseRepository(expenseDao: ExpenseDao): ExpenseRepository {
-        return ExpenseRepository(expenseDao)
+    fun provideTransactionRepository(transactionDao: TransactionDao ): TransactionRepository {
+        return TransactionRepository(transactionDao)
     }
 
-    @Provides
-    fun provideIncomeRepository(incomeDao: IncomeDao): IncomeRepository {
-        return IncomeRepository(incomeDao)
-    }
     @Provides
     fun provideContext(application: Application): Context {
         return application
