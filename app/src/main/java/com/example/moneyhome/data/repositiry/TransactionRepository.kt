@@ -24,10 +24,10 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
     }
 
     suspend fun getTransactionsByDateRange(startDate: String, endDate: String): List<TransactionEntity> {
-        val startDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-        val startDateObj = startDateFormat.parse(startDate)?: return emptyList()
-        val endDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-        val endDateObj = endDateFormat.parse(endDate)?: return emptyList()
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+        val startDateObj = dateFormat.parse(startDate) ?: return emptyList()
+        val endDateObj = dateFormat.parse(endDate) ?: return emptyList()
 
         return transactionDao.getTransactionsByDateRange(startDateObj, endDateObj)
     }

@@ -23,14 +23,13 @@ class AddViewModel @Inject constructor(
 
     fun saveTransaction(date: Date, type: String, category: String, amount: Double, comment: String) {
         viewModelScope.launch {
-            val formatter =  SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-            val formattedDate = formatter.parse(date.toString())?: date
             val transaction = TransactionEntity(
-                date = formattedDate,
+                date = date,
                 type = type,
                 category = category,
                 amount = amount,
-                comment = comment)
+                comment = comment
+            )
             repository.insertTransaction(transaction)
             _transactionSavedEvent.postValue(Unit)
         }

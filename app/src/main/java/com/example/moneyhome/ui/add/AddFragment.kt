@@ -42,20 +42,20 @@ class AddFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSave.setOnClickListener {
-            val date = binding.editTextDate.text.toString()
+            val dateStr = binding.editTextDate.text.toString()
             val type = if (binding.radioGroupOperationType.checkedRadioButtonId == R.id.radioButtonIncome) "Доход" else "Расход"
             val category = binding.spinnerCategory.selectedItem.toString()
             val amount = binding.editTextAmount.text.toString().toDoubleOrNull() ?: 0.0
             val comment = binding.editTextComment.text.toString()
 
-            if (date.isEmpty() || amount == 0.0 || amount == 0.0 || category.isEmpty()) {
+            if (dateStr.isEmpty() || amount == 0.0 || amount == 0.0 || category.isEmpty()) {
                 Toast.makeText(requireContext(), "Заполните все поля корректно", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val formatter = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
             try {
-                val parsedDate = formatter.parse(date)
+                val parsedDate = formatter.parse(dateStr)
                 if (parsedDate != null) {
                     viewModel.saveTransaction(parsedDate, type, category, amount, comment)
                     lifecycleScope.launch {

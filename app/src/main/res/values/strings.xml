@@ -7,17 +7,13 @@
     <string name="analytics">Аналитика</string>
     <string name="exit">Выход</string>
     <string name="menu">Меню</string>
-    <string name="date_hint">Дата операции</string>
+    <string name="date_hint">Дата операции dd.mm.yyyy строго вводить</string>
     <string name="income">Доход</string>
     <string name="expense">Расход</string>
     <string name="amount_hint">Сумма</string>
     <string name="comment_hint">Комментарий</string>
     <string name="save_button">Сохранить запись</string>
     <string-array name="transaction_categories">
-        <item>Зарплата</item>
-        <item>Калым</item>
-        <item>Подарили</item>
-        <item>Вселеная дала</item>
         <item>Продукты</item>
         <item>Кафе</item>
         <item>Коммунальные услуги</item>
@@ -33,5 +29,9 @@
         <item>Путешествия</item>
         <item>Авто</item>
         <item>Домашние животные</item>
+        <item>Зарплата</item>
+        <item>Калым</item>
+        <item>Подарили</item>
+        <item>Вселеная дала</item>
     </string-array>
 </resources>
