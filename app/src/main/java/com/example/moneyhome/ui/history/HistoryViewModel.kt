@@ -3,6 +3,7 @@ package com.example.moneyhome.ui.history
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.moneyhome.data.local.entity.TransactionEntity
@@ -20,12 +21,16 @@ class HistoryViewModel @Inject constructor(
     application: Application,
     private val transactionRepository: TransactionRepository,
 ) : AndroidViewModel(application) {
-    var transactions: LiveData<List<TransactionEntity>> = liveData {
-        emit(transactionRepository.getAllTransactions())
+    private val _transactions = MutableLiveData<List<TransactionEntity>>()
+    val transactions: LiveData<List<TransactionEntity>> get() = _transactions
+
+    init {
+        loadTransactions()
     }
     fun loadTransactions() {
         viewModelScope.launch {
             val transactionList = transactionRepository.getAllTransactions()
+            _transactions.postValue(transactionList)
             saveTransactionsToFile(transactionList)
         }
     }
@@ -33,6 +38,7 @@ class HistoryViewModel @Inject constructor(
         viewModelScope.launch {
             transactionRepository.deleteTransaction(transactionId)
             val updatedTransactions = transactionRepository.getAllTransactions()
+            _transactions.postValue(updatedTransactions)
             saveTransactionsToFile(updatedTransactions)
         }
     }
