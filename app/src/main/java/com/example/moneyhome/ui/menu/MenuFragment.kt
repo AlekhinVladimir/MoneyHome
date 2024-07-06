@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moneyhome.R
 import com.example.moneyhome.databinding.FragmentMenuBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class MenuFragment : Fragment() {

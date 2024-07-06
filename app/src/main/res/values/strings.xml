@@ -13,6 +13,12 @@
     <string name="amount_hint">Сумма</string>
     <string name="comment_hint">Комментарий</string>
     <string name="save_button">Сохранить запись</string>
+    <string name="historylabel">История операций</string>
+    <string name="date_view">Дата</string>
+    <string name="type_view">Тип</string>
+    <string name="category_view">Категория</string>
+    <string name="amount_view">Сумма</string>
+    <string name="comment_view">Комментарий</string>
     <string-array name="transaction_categories">
         <item>Продукты</item>
         <item>Кафе</item>

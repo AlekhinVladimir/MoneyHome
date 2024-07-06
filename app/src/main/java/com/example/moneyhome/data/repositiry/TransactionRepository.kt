@@ -1,6 +1,5 @@
 package com.example.moneyhome.data.repositiry
 
-import androidx.room.Transaction
 import com.example.moneyhome.data.local.dao.TransactionDao
 import com.example.moneyhome.data.local.entity.TransactionEntity
 import java.text.SimpleDateFormat
@@ -15,8 +14,8 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
         transactionDao.insert(transaction)
     }
 
-    suspend fun deleteTransaction(transaction: TransactionEntity) {
-        transactionDao.delete(transaction.id)
+    suspend fun deleteTransaction(transaction: Int) {
+        transactionDao.delete(transaction)
     }
 
     suspend fun getAllTransactions(): List<TransactionEntity> {

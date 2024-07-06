@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Transaction
 import com.example.moneyhome.R
 import com.example.moneyhome.data.local.entity.TransactionEntity
 import com.example.moneyhome.databinding.FragmentAddBinding
@@ -33,7 +32,7 @@ class AddFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -70,7 +69,12 @@ class AddFragment : Fragment() {
         }
 
         viewModel.transactionSavedEvent.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "Транзакция сохранена", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Запись сохранена", Toast.LENGTH_SHORT).show()
+            binding.editTextDate.setText("")
+            binding.editTextAmount.setText("")
+            binding.editTextComment.setText("")
+            binding.spinnerCategory.setSelection(0)
+            binding.radioGroupOperationType.clearCheck()
         }
     }
 
