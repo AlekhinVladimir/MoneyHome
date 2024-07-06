@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
+    android:background="@color/for_background"
+    android:baselineAligned="false"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -75,4 +76,8 @@
         android:layout_gravity="end"
         android:src="@drawable/ic_delete" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black" />
 </LinearLayout>
