@@ -6,24 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.DatePicker
+import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.moneyhome.R
+import com.example.moneyhome.data.local.ShowDatePickerDialog
 import com.example.moneyhome.data.local.entity.TransactionEntity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Calendar
 
 @AndroidEntryPoint
 class AnalyticsFragment : Fragment() {
     private lateinit var barChart: BarChart
-    private lateinit var startDatePicker: DatePicker
-    private lateinit var endDatePicker: DatePicker
+    private lateinit var startDateText: TextView
+    private lateinit var endDateText: TextView
+    private lateinit var startDatePicker: ImageButton
+    private lateinit var endDatePicker: ImageButton
     private lateinit var typeSpinner: Spinner
     private lateinit var categorySpinner: Spinner
     private lateinit var filterButton: Button
@@ -42,14 +45,24 @@ class AnalyticsFragment : Fragment() {
     }
     private fun initViews(view: View) {
         barChart = view.findViewById(R.id.barChart)
-        startDatePicker = view.findViewById(R.id.datePickerStart)
-        endDatePicker = view.findViewById(R.id.datePickerEnd)
+        startDateText = view.findViewById(R.id.textViewStartDate)
+        endDateText = view.findViewById(R.id.textViewEndDate)
+        startDatePicker = view.findViewById(R.id.calendar_day_selector_1)
+        endDatePicker = view.findViewById(R.id.calendar_day_selector_2)
         typeSpinner = view.findViewById(R.id.spinnerType)
-        categorySpinner = view.findViewById(R.id.spinnerCategory)
+        categorySpinner = view.findViewById(R.id.spinnerFilterCategory)
         filterButton = view.findViewById(R.id.buttonFilter)
     }
     private fun setupListeners() {
+        startDatePicker.setOnClickListener {ShowDatePickerDialog.showDatePicker(requireContext(),null,::onDateSelected1) }
+        endDatePicker.setOnClickListener {ShowDatePickerDialog.showDatePicker(requireContext(),null,::onDateSelected2) }
         filterButton.setOnClickListener { applyFilters() }
+    }
+    private fun onDateSelected1(selectedDate: String) {
+        startDateText.text = selectedDate
+    }
+    private fun onDateSelected2(selectedDate: String) {
+        endDateText.text = selectedDate
     }
     private fun observeTransactions() {
         viewModel.transactions.observe(viewLifecycleOwner) { transactions ->
@@ -69,14 +82,10 @@ class AnalyticsFragment : Fragment() {
         }
     }
     private fun getStartDate(): String {
-        val calendar = Calendar.getInstance()
-        calendar.set(startDatePicker.dayOfMonth, startDatePicker.month,startDatePicker.year )
-        return calendar.timeInMillis.toString()
+        return startDateText.text.toString()
     }
     private fun getEndDate(): String {
-        val calendar = Calendar.getInstance()
-        calendar.set(startDatePicker.dayOfMonth, startDatePicker.month,startDatePicker.year )
-        return calendar.timeInMillis.toString()
+        return endDateText.text.toString()
     }
     private fun updateChart(transactions: List<TransactionEntity>) {
         val entries = transactions.mapIndexed { index, transaction ->

@@ -19,57 +19,67 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/date_input_layout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="544dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barChart">
 
         <TextView
             android:id="@+id/textViewStartDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
             android:layout_margin="8dp"
+            android:text="@string/start_date"
             android:hint="@string/start_date"
             android:textColorHint="#546E7A"
-            app:layout_constraintEnd_toStartOf="@id/textViewEndDate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <DatePicker
-            android:id="@+id/datePickerStart"
-            android:layout_width="190dp"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            android:contextClickable="false"
-            android:datePickerMode="calendar"
-            app:layout_constraintEnd_toStartOf="@id/datePickerEnd"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewStartDate" />
+        <ImageButton
+            android:id="@+id/calendar_day_selector_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/baseline_calendar_month_24"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewStartDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/textViewStartDate"
+            app:layout_constraintTop_toTopOf="@+id/textViewStartDate"
+            app:layout_constraintVertical_bias="0.5"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/textViewEndDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
             android:hint="@string/end_date"
+            android:text="@string/end_date"
             android:textColorHint="#546E7A"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textViewStartDate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calendar_day_selector_1"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <DatePicker
-            android:id="@+id/datePickerEnd"
-            android:layout_width="190dp"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            android:datePickerMode="calendar"
-            android:contextClickable="false"
+        <ImageButton
+            android:id="@+id/calendar_day_selector_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_calendar_month_24"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewEndDate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/datePickerStart"
-            app:layout_constraintTop_toBottomOf="@id/textViewEndDate" />
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/textViewEndDate"
+            app:layout_constraintTop_toTopOf="@+id/textViewEndDate"
+            app:layout_constraintVertical_bias="0.5"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,16 +96,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:entries="@array/operation_types"
-            app:layout_constraintEnd_toStartOf="@id/spinnerCategory"
+            app:layout_constraintEnd_toStartOf="@id/spinnerFilterCategory"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Spinner
-            android:id="@+id/spinnerCategory"
+            android:id="@+id/spinnerFilterCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:entries="@array/transaction_categories"
+            android:entries="@array/transaction_filter_categories"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/spinnerType"
             app:layout_constraintTop_toTopOf="parent"

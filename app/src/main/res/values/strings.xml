@@ -22,8 +22,32 @@
     <string name="comment_view">Комментарий</string>
     <string name="end_date">По дату:</string>
     <string name="start_date">С даты:</string>
+    <string name="end_date_text">По дату:</string>
+    <string name="start_date_text">С даты:</string>
     <string name="filter">Фильтровать</string>
     <string-array name="transaction_categories">
+        <item>Продукты</item>
+        <item>Кафе</item>
+        <item>Коммунальные услуги</item>
+        <item>Транспорт</item>
+        <item>Одежда</item>
+        <item>Развлечения</item>
+        <item>Здоровье</item>
+        <item>Подарки</item>
+        <item>Учеба</item>
+        <item>Спорт</item>
+        <item>Техника</item>
+        <item>Долги</item>
+        <item>Путешествия</item>
+        <item>Авто</item>
+        <item>Домашние животные</item>
+        <item>Зарплата</item>
+        <item>Калым</item>
+        <item>Подарили</item>
+        <item>Вселеная дала</item>
+    </string-array>
+    <string-array name="transaction_filter_categories">
+        <item>Все</item>
         <item>Продукты</item>
         <item>Кафе</item>
         <item>Коммунальные услуги</item>
