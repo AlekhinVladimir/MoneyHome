@@ -68,10 +68,10 @@ class AnalyticsFragment : Fragment() {
     private fun observeTransactions() {
         viewModel.transactions.observe(viewLifecycleOwner) { transactions ->
             Log.d("AnalyticsFragment", "Observed ${transactions.size} transactions")
+            Log.d("AnalyticsFragment", "Transactions: ${transactions.joinToString { it.toString() }}")
             updateChart(transactions)
             }
         }
-
     private fun applyFilters() {
         val startDate = getStartDate()
         val endDate = getEndDate()
@@ -91,23 +91,31 @@ class AnalyticsFragment : Fragment() {
         return endDateText.text.toString()
     }
     private fun updateChart(transactions: List<TransactionEntity>) {
+        Log.d("AnalyticsFragment", "updateChart called with ${transactions.size} transactions")
+        val barChart = barChart
+        if (barChart == null) {
+            Log.d("AnalyticsFragment", "barChart is null")
+            return
+        }
+        Log.d("AnalyticsFragment", "updateChart called") // Добавлено для отслеживания вызова
         if (transactions.isEmpty()) {
             Log.d("AnalyticsFragment", "No transactions to display")
             return
         }
         val entries = transactions.mapIndexed { index, transaction ->
+            Log.d("AnalyticsFragment", "Creating BarEntry: index=$index, amount=${transaction.amount}") // Добавлено для отслеживания BarEntry
             BarEntry(index.toFloat(), transaction.amount.toFloat())
         }
         val colors = listOf(
             Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW, Color.CYAN,
             Color.MAGENTA, Color.GRAY, Color.LTGRAY, Color.DKGRAY, Color.BLACK
         )
-
         val dataSet = BarDataSet(entries, "Transactions")
         dataSet.colors = colors
         val barData = BarData(dataSet)
         barChart.setFitBars(true)
         barChart.data = barData
+        Log.d("AnalyticsFragment", "Data set to barChart") // Добавлено для отслеживания установки данных
         barChart.invalidate()
     }
 }

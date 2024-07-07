@@ -9,7 +9,7 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/date_input_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,16 +24,15 @@
         app:layout_constraintBottom_toTopOf="@+id/spinner_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barChart">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textViewStartDate"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"
-            android:text="@string/start_date"
             android:hint="@string/start_date"
+            android:text="@string/start_date"
             android:textColorHint="#546E7A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +71,7 @@
             android:id="@+id/calendar_day_selector_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
             android:src="@drawable/baseline_calendar_month_24"
             app:layout_constraintBottom_toBottomOf="@+id/textViewEndDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +86,9 @@
         android:id="@+id/spinner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFilter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_input_layout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Spinner
             android:id="@+id/spinnerType"
@@ -119,8 +119,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/filter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_layout" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.965" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
