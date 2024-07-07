@@ -1,5 +1,6 @@
 package com.example.moneyhome.ui.analytics
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,9 @@ class AnalyticsViewModel @Inject constructor(
     val transactions: LiveData<List<TransactionEntity>> = _transactions
     fun loadAllTransactions() {
         viewModelScope.launch {
-            _transactions.postValue(repository.getAllTransactions())
+            val result = repository.getAllTransactions()
+            _transactions.postValue(result)
+            Log.d("AnalyticsViewModel", "Loaded ${result.size} transactions")
         }
     }
     fun loadTransactionsByDateRange(startDate: String, endDate: String) {

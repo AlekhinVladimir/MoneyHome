@@ -1,5 +1,6 @@
 package com.example.moneyhome.data.repositiry
 
+import android.util.Log
 import com.example.moneyhome.data.local.dao.TransactionDao
 import com.example.moneyhome.data.local.entity.TransactionEntity
 import java.text.SimpleDateFormat
@@ -19,7 +20,9 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
     }
 
     suspend fun getAllTransactions(): List<TransactionEntity> {
-        return transactionDao.getAllTransactions()
+        val transactions = transactionDao.getAllTransactions()
+        Log.d("TransactionRepository", "Fetched ${transactions.size} transactions from database")
+        return transactions
     }
 
     suspend fun getTransactionsByDateRange(startDate: String, endDate: String): List<TransactionEntity> {

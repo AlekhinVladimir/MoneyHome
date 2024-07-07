@@ -107,25 +107,20 @@ class AddFragment : Fragment() {
         val category = binding.spinnerCategory.selectedItem.toString()
         val amount = binding.editTextAmount.text.toString().toDoubleOrNull() ?: 0.0
         val comment = binding.editTextComment.text.toString()
-
         if (dateStr.isEmpty() || amount == 0.0 || category.isEmpty()) {
             Toast.makeText(requireContext(), "Заполните все поля корректно", Toast.LENGTH_SHORT).show()
             return
         }
-
         val parsedDate = dateFormat.parse(dateStr) // Уже проверено на этапе ввода
-
         if (parsedDate == null) {
             Toast.makeText(requireContext(), "Неверный формат даты", Toast.LENGTH_SHORT).show()
             return
         }
-
         viewModel.saveTransaction(parsedDate, type, category, amount, comment)
         lifecycleScope.launch {
             saveTransactionsToFile(viewModel.getAllTransactions())
         }
     }
-
     private suspend fun saveTransactionsToFile(transactions: List<TransactionEntity>) {
         withContext(Dispatchers.IO) {
             val gson = Gson()

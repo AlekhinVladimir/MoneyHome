@@ -2,6 +2,7 @@ package com.example.moneyhome.ui.analytics
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,9 +67,11 @@ class AnalyticsFragment : Fragment() {
     }
     private fun observeTransactions() {
         viewModel.transactions.observe(viewLifecycleOwner) { transactions ->
+            Log.d("AnalyticsFragment", "Observed ${transactions.size} transactions")
             updateChart(transactions)
+            }
         }
-    }
+
     private fun applyFilters() {
         val startDate = getStartDate()
         val endDate = getEndDate()
@@ -88,6 +91,10 @@ class AnalyticsFragment : Fragment() {
         return endDateText.text.toString()
     }
     private fun updateChart(transactions: List<TransactionEntity>) {
+        if (transactions.isEmpty()) {
+            Log.d("AnalyticsFragment", "No transactions to display")
+            return
+        }
         val entries = transactions.mapIndexed { index, transaction ->
             BarEntry(index.toFloat(), transaction.amount.toFloat())
         }
