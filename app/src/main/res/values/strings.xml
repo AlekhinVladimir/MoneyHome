@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MoneyHome</string>
     <string name="btn_start">Начать</string>
@@ -13,12 +14,15 @@
     <string name="amount_hint">Сумма</string>
     <string name="comment_hint">Комментарий</string>
     <string name="save_button">Сохранить запись</string>
-    <string name="historylabel">История операций</string>
+    <string name="history_label">История операций</string>
     <string name="date_view">Дата</string>
     <string name="type_view">Тип</string>
     <string name="category_view">Категория</string>
     <string name="amount_view">Сумма</string>
     <string name="comment_view">Комментарий</string>
+    <string name="end_date">По дату:</string>
+    <string name="start_date">С даты:</string>
+    <string name="filter">Фильтровать</string>
     <string-array name="transaction_categories">
         <item>Продукты</item>
         <item>Кафе</item>
@@ -40,4 +44,9 @@
         <item>Подарили</item>
         <item>Вселеная дала</item>
     </string-array>
+    <string-array name="operation_types">
+        <item>Доход</item>
+        <item>Расход</item>
+    </string-array>
+
 </resources>

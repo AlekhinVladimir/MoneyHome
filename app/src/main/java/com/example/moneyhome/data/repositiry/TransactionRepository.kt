@@ -38,4 +38,7 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
     suspend fun getTransactionsByCategory(category: String): List<TransactionEntity> {
         return transactionDao.getTransactionsByCategory(category)
     }
+    suspend fun getTransactionsByCategoryAndType(category: String, type: String): List<TransactionEntity> {
+        return transactionDao.getTransactionsByCategoryAndType(category, type)
+    }
 }

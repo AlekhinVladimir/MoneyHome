@@ -27,4 +27,7 @@ interface TransactionDao {
 
     @Query("SELECT * FROM transactions WHERE category = :category")
     suspend fun getTransactionsByCategory(category: String): List<TransactionEntity>
-    }
+
+    @Query("SELECT * FROM transactions WHERE category = :category AND type = :type")
+    suspend fun getTransactionsByCategoryAndType(category: String, type: String): List<TransactionEntity>
+}

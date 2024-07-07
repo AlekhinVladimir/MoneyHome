@@ -15,31 +15,31 @@ import javax.inject.Inject
 class AnalyticsViewModel @Inject constructor(
     private val repository: TransactionRepository
 ) : ViewModel() {
-
     private val _transactions = MutableLiveData<List<TransactionEntity>>()
-    val transactions: LiveData<List<TransactionEntity>> get() = _transactions
-
+    val transactions: LiveData<List<TransactionEntity>> = _transactions
     fun loadAllTransactions() {
         viewModelScope.launch {
             _transactions.postValue(repository.getAllTransactions())
         }
     }
-
     fun loadTransactionsByDateRange(startDate: String, endDate: String) {
         viewModelScope.launch {
             _transactions.postValue(repository.getTransactionsByDateRange(startDate, endDate))
         }
     }
-
     fun loadTransactionsByType(type: String) {
         viewModelScope.launch {
             _transactions.postValue(repository.getTransactionsByType(type))
         }
     }
-
     fun loadTransactionsByCategory(category: String) {
         viewModelScope.launch {
             _transactions.postValue(repository.getTransactionsByCategory(category))
+        }
+    }
+    fun loadTransactionsByCategoryAndType(category: String, type: String) {
+        viewModelScope.launch {
+            _transactions.postValue(repository.getTransactionsByCategoryAndType(category, type))
         }
     }
 }
