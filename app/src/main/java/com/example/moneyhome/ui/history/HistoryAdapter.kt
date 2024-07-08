@@ -1,5 +1,4 @@
 package com.example.moneyhome.ui.history
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,12 +8,19 @@ import com.example.moneyhome.data.local.entity.TransactionEntity
 import com.example.moneyhome.databinding.HistoryItemBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
+
 class HistoryAdapter(
     private val onDeleteClickListener: (Int) -> Unit
 ) : ListAdapter<TransactionEntity, HistoryAdapter.HistoryViewHolder>(DiffCallback) {
 
+    private var transactions: List<TransactionEntity> = emptyList()
+
+    override fun submitList(list: List<TransactionEntity>?) {
+        transactions = list?.sortedByDescending { it.date } ?: emptyList()
+        super.submitList(transactions)
+    }
+
     class HistoryViewHolder(private val binding: HistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("DefaultLocale")
         fun bind(transaction: TransactionEntity, onDeleteClickListener: (Int) -> Unit) {
             val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
             binding.textViewDate.text = dateFormat.format(transaction.date)
@@ -44,7 +50,7 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        val transaction = getItem(position)
+        val transaction = transactions[position]
         holder.bind(transaction, onDeleteClickListener)
     }
 }
