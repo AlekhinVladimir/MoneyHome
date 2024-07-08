@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 
@@ -44,13 +45,13 @@ class AddFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.editTextDate.setText(dateFormat.format(Calendar.getInstance().time))
         binding.editTextDate.doAfterTextChanged { text ->
-            if (isDateFormatValid(text)) {
+            if (isDateFormatValid(text) && isDateReal(text)) {
                 binding.editTextDate.error = null
                 binding.buttonSave.isEnabled = true
             } else {
-                binding.editTextDate.error = "Неверный формат даты"
+                binding.editTextDate.error = "Неверная или нереальная дата"
                 binding.buttonSave.isEnabled = false
             }
         }
@@ -71,16 +72,34 @@ class AddFragment : Fragment() {
             clearInputFields()
         }
     }
+    private fun isDateReal(dateString: CharSequence?): Boolean {
+        val date = dateFormat.parse(dateString.toString())
+        val currentDate = Calendar.getInstance().time
+        return date != null && date.before(currentDate)
+    }
+    private fun isDateFormatValid(dateString: CharSequence?): Boolean {
+        val dateParts = dateString?.split(".") ?: return false
 
+        if (dateParts.size != 3) {
+            return false
+        }
+        val day = dateParts.getOrNull(0)?.toIntOrNull()
+        val month = dateParts.getOrNull(1)?.toIntOrNull()
+        val year = dateParts.getOrNull(2)?.toIntOrNull()
+        if (day == null || month == null || year == null) {
+            return false
+        }
+        return when (month) {
+            1, 3, 5, 7, 8, 10, 12 -> day in 1..31
+            4, 6, 9, 11 -> day in 1..30
+            2 -> day in 1..if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) 29 else 28
+            else -> false
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun isDateFormatValid(text: CharSequence?): Boolean {
-        return text != null && dateRegex.matches(text)
-    }
-
     private fun clearInputFields() {
         with(binding) {
             editTextDate.setText("")
