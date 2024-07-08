@@ -42,4 +42,15 @@ class TransactionRepository @Inject constructor(private val transactionDao: Tran
     suspend fun getTransactionsByCategoryAndType(category: String, type: String): List<TransactionEntity> {
         return transactionDao.getTransactionsByCategoryAndType(category, type)
     }
+
+    suspend fun getTransactionsByDateRangeandCategory (
+        startDate: String,
+        endDate: String,
+        category: String
+    ): List<TransactionEntity>? {
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val startDateObj = dateFormat.parse(startDate) ?: return null
+        val endDateObj = dateFormat.parse(endDate) ?: return null
+        return transactionDao.getTransactionsByDateRangeandCategory(startDateObj, endDateObj, category)
+    }
 }

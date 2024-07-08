@@ -1,6 +1,5 @@
 package com.example.moneyhome.ui.add
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.moneyhome.R
+import com.example.moneyhome.data.local.ShowDatePickerDialog
 import com.example.moneyhome.data.local.entity.TransactionEntity
 import com.example.moneyhome.databinding.FragmentAddBinding
 import com.google.gson.Gson
@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Locale
 
 
@@ -34,18 +33,6 @@ class AddFragment : Fragment() {
     private val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     private val dateRegex = Regex("\\d{2}\\.\\d{2}\\.\\d{4}")
 
-    private val datePickerDialog by lazy {
-        DatePickerDialog(
-            requireContext(),
-            { _, year, month, dayOfMonth ->
-                val selectedDate = String.format(Locale.getDefault(), "%02d.%02d.%04d", dayOfMonth, month + 1, year)
-                binding.editTextDate.setText(selectedDate)
-            },
-            Calendar.getInstance().get(Calendar.YEAR),
-            Calendar.getInstance().get(Calendar.MONTH),
-            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        )
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +56,10 @@ class AddFragment : Fragment() {
         }
 
         binding.calendarDaySelectorFrame.setOnClickListener {
-            datePickerDialog.show()
+            fun onDateSelected(s: String) {
+                binding.editTextDate.setText(s)
+            }
+            ShowDatePickerDialog.showDatePicker(requireContext(), null, ::onDateSelected)
         }
 
         binding.buttonSave.setOnClickListener {

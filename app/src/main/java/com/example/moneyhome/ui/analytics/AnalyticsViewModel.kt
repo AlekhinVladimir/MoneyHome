@@ -44,4 +44,14 @@ class AnalyticsViewModel @Inject constructor(
             _transactions.postValue(repository.getTransactionsByCategoryAndType(category, type))
         }
     }
+
+    fun loadTransactionsByDateRangeandCategory(
+        startDate: String,
+        endDate: String,
+        category: String
+    ) {
+        viewModelScope.launch {
+            _transactions.postValue(repository.getTransactionsByDateRangeandCategory(startDate, endDate, category))
+        }
+    }
 }
