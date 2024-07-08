@@ -69,8 +69,7 @@
         <item>Вселеная дала</item>
     </string-array>
     <string-array name="operation_types">
-        <item>Доход</item>
         <item>Расход</item>
+        <item>Доход</item>
     </string-array>
-
 </resources>
