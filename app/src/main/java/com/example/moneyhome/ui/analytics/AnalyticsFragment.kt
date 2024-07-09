@@ -104,6 +104,15 @@ class AnalyticsFragment : Fragment() {
         val dataSet = BarDataSet(entries, "Transactions")
         dataSet.colors = colors
         val barData = BarData(dataSet)
+        barChart.description.isEnabled = false
+        barChart.legend.isEnabled = true
+        barChart.xAxis.isEnabled = false
+        barChart.axisLeft.isEnabled = false
+        barChart.axisRight.isEnabled = false
+        barChart.axisLeft.setDrawGridLines(false)
+        barChart.axisRight.setDrawGridLines(false)
+        barChart.axisLeft.setDrawLabels(false)
+        barChart.axisRight.setDrawLabels(false)
         barChart.setFitBars(true)
         barChart.data = barData
         barChart.invalidate()
