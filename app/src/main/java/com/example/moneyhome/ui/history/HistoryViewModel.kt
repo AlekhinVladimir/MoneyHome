@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.moneyhome.data.local.entity.TransactionEntity
-import com.example.moneyhome.data.repositiry.TransactionRepository
+import com.example.moneyhome.domain.entity.TransactionEntity
+import com.example.moneyhome.domain.repositiry.TransactionRepository
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

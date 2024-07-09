@@ -1,4 +1,4 @@
-package com.example.moneyhome.data.local.entity
+package com.example.moneyhome.domain.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

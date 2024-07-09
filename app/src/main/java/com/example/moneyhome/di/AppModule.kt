@@ -3,9 +3,9 @@ package com.example.moneyhome.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.example.moneyhome.data.local.AppDatabase
-import com.example.moneyhome.data.local.dao.TransactionDao
-import com.example.moneyhome.data.repositiry.TransactionRepository
+import com.example.moneyhome.data.AppDatabase
+import com.example.moneyhome.data.dao.TransactionDao
+import com.example.moneyhome.domain.repositiry.TransactionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +33,7 @@ object AppModule {
 
 
     @Provides
-    fun provideTransactionRepository(transactionDao: TransactionDao ): TransactionRepository {
+    fun provideTransactionRepository(transactionDao: TransactionDao): TransactionRepository {
         return TransactionRepository(transactionDao)
     }
 

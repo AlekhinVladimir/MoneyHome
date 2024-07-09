@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.moneyhome.R
 import com.example.moneyhome.data.local.ShowDatePickerDialog
-import com.example.moneyhome.data.local.entity.TransactionEntity
+import com.example.moneyhome.domain.entity.TransactionEntity
 import com.example.moneyhome.databinding.FragmentAddBinding
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint

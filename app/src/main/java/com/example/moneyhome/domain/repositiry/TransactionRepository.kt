@@ -1,7 +1,7 @@
-package com.example.moneyhome.data.repositiry
+package com.example.moneyhome.domain.repositiry
 
-import com.example.moneyhome.data.local.dao.TransactionDao
-import com.example.moneyhome.data.local.entity.TransactionEntity
+import com.example.moneyhome.data.dao.TransactionDao
+import com.example.moneyhome.domain.entity.TransactionEntity
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class TransactionRepository @Inject constructor(private val transactionDao: TransactionDao) {
 
-    suspend fun insertTransaction(transaction:TransactionEntity) {
+    suspend fun insertTransaction(transaction: TransactionEntity) {
         transactionDao.insert(transaction)
     }
 
