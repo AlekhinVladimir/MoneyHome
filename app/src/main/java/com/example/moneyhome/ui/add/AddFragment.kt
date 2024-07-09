@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.moneyhome.R
 import com.example.moneyhome.data.local.ShowDatePickerDialog
-import com.example.moneyhome.domain.entity.TransactionEntity
 import com.example.moneyhome.databinding.FragmentAddBinding
+import com.example.moneyhome.domain.entity.TransactionEntity
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +32,6 @@ class AddFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
-    private val dateRegex = Regex("\\d{2}\\.\\d{2}\\.\\d{4}")
 
 
     override fun onCreateView(
